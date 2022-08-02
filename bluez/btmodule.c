@@ -1223,7 +1223,7 @@ sock_recvfrom(PySocketSockObject *s, PyObject *args)
 
 	if (!getsockaddrlen(s, &addrlen))
 		return NULL;
-	buf = PyUnicode_FromStringAndSize((char *) 0, len);
+	buf = PyBytes_FromStringAndSize((char *) 0, len);
 	if (buf == NULL)
 		return NULL;
 
@@ -2052,7 +2052,7 @@ bt_hci_send_req(PyObject *self, PyObject *args, PyObject *kwds)
 
     if( err< 0 ) return socko->errorhandler();
 
-    return PyUnicode_FromStringAndSize(rparam, req.rlen);
+    return PyBytes_FromStringAndSize(rparam, req.rlen);
 }
 PyDoc_STRVAR(bt_hci_send_req_doc,
 "hci_send_req(sock, ogf, ocf, event, rlen, params=None, timeout=0)\n\
@@ -2279,7 +2279,7 @@ static PyObject * bt_hci_filter_ ## name (PyObject *self, PyObject *args )\
         return 0; \
     } \
     hci_filter_ ## name ( arg, (struct hci_filter*)param ); \
-    return PyUnicode_FromStringAndSize(param, len); \
+    return PyBytes_FromStringAndSize(param, len); \
 } \
 PyDoc_STRVAR(bt_hci_filter_ ## name ## _doc, docstring);
 
@@ -2308,7 +2308,7 @@ static PyObject * bt_hci_filter_ ## name (PyObject *self, PyObject *args )\
         return 0; \
     } \
     hci_filter_ ## name ( (struct hci_filter*)param ); \
-    return PyUnicode_FromStringAndSize(param, len); \
+    return PyBytes_FromStringAndSize(param, len); \
 } \
 PyDoc_STRVAR(bt_hci_filter_ ## name ## _doc, docstring);
 
